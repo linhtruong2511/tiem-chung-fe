@@ -8,91 +8,111 @@ export interface User {
 }
 
 export interface KhachHang {
-  id: number;
-  hoTen: string;
-  ngaySinh: string;
-  gioiTinh: string;
-  cccd: string;
-  soDienThoai: string;
-  diaChi: string;
-  tuoi: number;
-  email: string;
+  ID: number;
+  HoTen: string;
+  NgaySinh: string;
+  GioiTinh: string;
+  CCCD: string;
+  SoDienThoai: string;
+  DiaChi: string;
+  Tuoi?: number;
+  Email?: string;
+  NgayTao?: string;
 }
 
 export interface PhieuKhamSangLoc {
-  id: number;
-  thoiGianTao: string;
-  maKH: number;
-  maNV: number;
-  trangThai: string;
-  duDieuKien: boolean;
-  huyetAp: string;
-  mach: string;
-  thanNhiet: string;
-  lyDoHoan?: string;
-  ghiChu?: string;
+  ID: number;
+  ThoiGianTao: string;
+  MaKH: number;
+  MaNVKham: number;
+  TrangThai: string;
+  DuDieuKien: number;
+  HuyetAp?: number;
+  Mach?: number;
+  ThanNhiet?: number;
+  LyDoHoan?: string;
+  GhiChu?: string;
+  TenKhachHang?: string;
+  TenNhanVien?: string;
 }
 
 export interface PhieuTiem {
-  id: number;
-  maNV: number;
-  ghiChu?: string;
-  maPhieuKham: number;
-  diaDiemTiem: string;
-  viTriTiem: string;
-  maVaccine: number;
-  soLieu: number;
-  daThanhToan: boolean;
-  coPhanUng: boolean;
+  ID: number;
+  NgayTao: string;
+  GhiChu?: string;
+  MaThanhToan?: number;
+  DiaDiemTiem?: string;
+  ViTriTiem?: string;
+  MaNVTiem: number;
+  MaPhieuKhamSangLoc: number;
+  TenNhanVien?: string;
+  TenKhachHang?: string;
+  TongTien?: number;
+  TrangThaiThanhToan?: string;
 }
 
 export interface Vaccine {
-  id: number;
-  ten: string;
-  soLuong: number;
-  donGia: number;
-  moTa?: string;
-  ghiChu?: string;
-  maLoai: number;
-  donVi: string;
-  doTuoi: string;
+  ID: number;
+  Ten: string;
+  SoLuong?: number;
+  HangSX?: string;
+  DonGia: number;
+  MoTa?: string;
+  GhiChu?: string;
+  MaLoai?: number;
+  DonVi?: string;
+  DoTuoi?: string;
+  TenLoai?: string;
+  NhomBenh?: string;
 }
 
 export interface ThanhToan {
-  id: number;
-  tongTien: number;
-  tienNhan: number;
-  tienTraLai: number;
-  maPTTT: number;
-  maNV: number;
-  maPhieuTiem: number;
-  ghiChu?: string;
+  ID: number;
+  TongTien: number;
+  TienNhan: number;
+  TienTraLai: number;
+  MaPTTT: number;
+  MaNVTao: number;
+  ThoiGian: string;
+  GhiChu?: string;
+  MaKHThanhToan?: number;
+  maPhieuTiem?: number;
+  TenKhachHang?: string;
+  TenNhanVien?: string;
+  Ten?: string;
 }
 
 export interface LoVaccine {
-  id: number;
-  hangVC: string;
-  maNV: number;
-  ngayTao: string;
+  ID: number;
+  HangVanChuyen?: string;
+  MaNVNhan?: number;
+  NgayNhap: string;
+  TenNhanVienNhan?: string;
+  TenVaccine?: string;
+  soLuong?: number;
 }
 
 export interface NhanVien {
-  id: number;
-  hoTen: string;
-  ngaySinh: string;
-  gioiTinh: string;
-  cccd: string;
-  soDienThoai: string;
-  diaChi: string;
-  taiKhoan: string;
-  luongCoBan: number;
-  anh?: string;
-  ngayVaoLam: string;
-  soNamKinhNghiem: number;
-  diemManh?: string;
-  diemYeu?: string;
-  vaiTro: VaiTro;
-  ngayNghiViec?: string;
+  ID: number;
+  HoTen: string;
+  NgaySinh: string;
+  GioiTinh: string;
+  CCCD: string;
+  SoDienThoai: string;
+  DiaChi: string;
+  TaiKhoan: string;
+  MatKhau?: string;
+  LuongCoBan: number;
+  Anh?: string;
+  NgayVaoLam: string;
+  NgayNghiViec?: string;
+  SoNamKinhNghiem?: number;
+  DiemManh?: string;
+  DiemYeu?: string;
+  VaiTro: string;
+  TenChucVu?: string;
+  DaNghiViec?: boolean;
+  Email?: string;
 }
 
 export interface PaginatedResponse<T> {
