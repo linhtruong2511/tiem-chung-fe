@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Card, CardContent } from '@/components/ui/card';
@@ -20,60 +20,60 @@ import {
 } from '@/components/ui/dialog';
 import { Label } from '@/components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { Plus, Edit, Trash2 } from 'lucide-react';
+import { Plus, Edit, Trash2, Loader2 } from 'lucide-react';
 import { KhachHang } from '@/types';
 import { FilterSection } from '@/components/FilterSection';
+import { khachHangAPI } from '@/services/api';
+import { useToast } from '@/hooks/use-toast';
 
 export default function KhachHangPage() {
   const [searchKeyword, setSearchKeyword] = useState('');
   const [tuoiTu, setTuoiTu] = useState('');
   const [tuoiDen, setTuoiDen] = useState('');
   const [gioiTinh, setGioiTinh] = useState('');
-  const [page, setPage] = useState(1);
+  const [page, setPage] = useState(0);
+  const [pageSize] = useState(10);
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [editingKH, setEditingKH] = useState<KhachHang | null>(null);
+  const [data, setData] = useState<KhachHang[]>([]);
+  const [loading, setLoading] = useState(false);
+  const [total, setTotal] = useState(0);
+  const { toast } = useToast();
 
-  const mockData: KhachHang[] = [
-    {
-      ID: 1,
-      HoTen: 'Nguyễn Văn A',
-      NgaySinh: '1990-01-15',
-      GioiTinh: 'Nam',
-      CCCD: '001234567890',
-      SoDienThoai: '0901234567',
-      DiaChi: 'Hà Nội',
-      Tuoi: 34,
-      Email: 'nguyenvana@email.com',
-      NgayTao: '2024-01-01'
-    },
-    {
-      ID: 2,
-      HoTen: 'Trần Thị B',
-      NgaySinh: '1985-05-20',
-      GioiTinh: 'Nữ',
-      CCCD: '001234567891',
-      SoDienThoai: '0901234568',
-      DiaChi: 'TP.HCM',
-      Tuoi: 39,
-      Email: 'tranthib@email.com',
-      NgayTao: '2024-01-02'
-    },
-    {
-      ID: 3,
-      HoTen: 'Lê Văn C',
-      NgaySinh: '1995-08-10',
-      GioiTinh: 'Nam',
-      CCCD: '001234567892',
-      SoDienThoai: '0901234569',
-      DiaChi: 'Đà Nẵng',
-      Tuoi: 29,
-      Email: 'levanc@email.com',
-      NgayTao: '2024-01-03'
+  const fetchData = async () => {
+    setLoading(true);
+    try {
+      const params: any = {
+        page,
+        pageSize
+      };
+
+      if (searchKeyword) params.keyword = searchKeyword;
+      if (tuoiTu) params.tuoiTu = parseInt(tuoiTu);
+      if (tuoiDen) params.tuoiDen = parseInt(tuoiDen);
+      if (gioiTinh && gioiTinh !== 'all') params.gioiTinh = gioiTinh;
+
+      const response = await khachHangAPI.search(params);
+      setData(response.data || []);
+      setTotal(response.total || 0);
+    } catch (error) {
+      toast({
+        title: 'Lỗi',
+        description: 'Không thể tải dữ liệu khách hàng',
+        variant: 'destructive'
+      });
+    } finally {
+      setLoading(false);
     }
-  ];
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, [page]);
 
   const handleSearch = () => {
-    console.log({ searchKeyword, tuoiTu, tuoiDen, gioiTinh });
+    setPage(0);
+    fetchData();
   };
 
   const handleReset = () => {
@@ -81,17 +81,60 @@ export default function KhachHangPage() {
     setTuoiTu('');
     setTuoiDen('');
     setGioiTinh('');
+    setPage(0);
+    setTimeout(() => fetchData(), 100);
   };
 
-  const handleDelete = (_id: number) => {
-    if (confirm('Bạn có chắc chắn muốn xóa khách hàng này?')) {
-      // TODO: Call API
+  const handleDelete = async (id: number) => {
+    if (!confirm('Bạn có chắc chắn muốn xóa khách hàng này?')) return;
+
+    try {
+      await khachHangAPI.delete(id);
+      toast({
+        title: 'Thành công',
+        description: 'Đã xóa khách hàng'
+      });
+      fetchData();
+    } catch (error) {
+      toast({
+        title: 'Lỗi',
+        description: 'Không thể xóa khách hàng',
+        variant: 'destructive'
+      });
     }
   };
 
-  const handleSave = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSave = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    const formData = new FormData(e.currentTarget);
+
+    try {
+      if (editingKH) {
+        await khachHangAPI.update(editingKH.ID, formData);
+        toast({
+          title: 'Thành công',
+          description: 'Đã cập nhật khách hàng'
+        });
+      } else {
+        await khachHangAPI.create(formData);
+        toast({
+          title: 'Thành công',
+          description: 'Đã tạo khách hàng mới'
+        });
+      }
+      setIsDialogOpen(false);
+      setEditingKH(null);
+      fetchData();
+    } catch (error) {
+      toast({
+        title: 'Lỗi',
+        description: editingKH ? 'Không thể cập nhật khách hàng' : 'Không thể tạo khách hàng',
+        variant: 'destructive'
+      });
+    }
   };
+
+  const totalPages = Math.ceil(total / pageSize);
 
   return (
     <div className="space-y-6">
@@ -239,59 +282,77 @@ export default function KhachHangPage() {
                 </TableRow>
               </TableHeader>
               <TableBody>
-                {mockData.map((kh) => (
-                  <TableRow key={kh.ID} className="hover:bg-green-50">
-                    <TableCell>{kh.ID}</TableCell>
-                    <TableCell className="font-medium">{kh.HoTen}</TableCell>
-                    <TableCell>{new Date(kh.NgaySinh).toLocaleDateString('vi-VN')}</TableCell>
-                    <TableCell>{kh.GioiTinh}</TableCell>
-                    <TableCell>{kh.SoDienThoai}</TableCell>
-                    <TableCell>{kh.CCCD}</TableCell>
-                    <TableCell>{kh.Email}</TableCell>
-                    <TableCell className="text-right">
-                      <div className="flex justify-end gap-2">
-                        <Button
-                          size="icon"
-                          variant="ghost"
-                          className="hover:bg-blue-50 hover:text-blue-600"
-                          onClick={() => {
-                            setEditingKH(kh);
-                            setIsDialogOpen(true);
-                          }}
-                        >
-                          <Edit className="w-4 h-4" />
-                        </Button>
-                        <Button
-                          size="icon"
-                          variant="ghost"
-                          className="hover:bg-red-50 hover:text-red-600"
-                          onClick={() => handleDelete(kh.ID)}
-                        >
-                          <Trash2 className="w-4 h-4" />
-                        </Button>
-                      </div>
+                {loading ? (
+                  <TableRow>
+                    <TableCell colSpan={8} className="text-center py-8">
+                      <Loader2 className="w-6 h-6 animate-spin mx-auto text-green-600" />
+                      <p className="mt-2 text-gray-500">Đang tải dữ liệu...</p>
                     </TableCell>
                   </TableRow>
-                ))}
+                ) : data.length === 0 ? (
+                  <TableRow>
+                    <TableCell colSpan={8} className="text-center py-8 text-gray-500">
+                      Không có dữ liệu
+                    </TableCell>
+                  </TableRow>
+                ) : (
+                  data.map((kh) => (
+                    <TableRow key={kh.ID} className="hover:bg-green-50">
+                      <TableCell>{kh.ID}</TableCell>
+                      <TableCell className="font-medium">{kh.HoTen}</TableCell>
+                      <TableCell>{new Date(kh.NgaySinh).toLocaleDateString('vi-VN')}</TableCell>
+                      <TableCell>{kh.GioiTinh}</TableCell>
+                      <TableCell>{kh.SoDienThoai}</TableCell>
+                      <TableCell>{kh.CCCD}</TableCell>
+                      <TableCell>{kh.Email}</TableCell>
+                      <TableCell className="text-right">
+                        <div className="flex justify-end gap-2">
+                          <Button
+                            size="icon"
+                            variant="ghost"
+                            className="hover:bg-blue-50 hover:text-blue-600"
+                            onClick={() => {
+                              setEditingKH(kh);
+                              setIsDialogOpen(true);
+                            }}
+                          >
+                            <Edit className="w-4 h-4" />
+                          </Button>
+                          <Button
+                            size="icon"
+                            variant="ghost"
+                            className="hover:bg-red-50 hover:text-red-600"
+                            onClick={() => handleDelete(kh.ID)}
+                          >
+                            <Trash2 className="w-4 h-4" />
+                          </Button>
+                        </div>
+                      </TableCell>
+                    </TableRow>
+                  ))
+                )}
               </TableBody>
             </Table>
           </div>
         </CardContent>
       </Card>
 
-      <div className="flex justify-center gap-2">
+      <div className="flex justify-center items-center gap-2">
         <Button
           variant="outline"
-          onClick={() => setPage(Math.max(1, page - 1))}
-          disabled={page === 1}
+          onClick={() => setPage(Math.max(0, page - 1))}
+          disabled={page === 0 || loading}
           className="border-gray-300"
         >
           Trước
         </Button>
-        <Button variant="outline" disabled className="border-gray-300">Trang {page}</Button>
+        <span className="px-4 py-2 text-sm text-gray-700">
+          Trang {page + 1} / {totalPages || 1}
+        </span>
         <Button
           variant="outline"
           onClick={() => setPage(page + 1)}
+          disabled={page >= totalPages - 1 || loading}
           className="border-gray-300"
         >
           Sau
