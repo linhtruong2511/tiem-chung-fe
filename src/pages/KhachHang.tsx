@@ -35,15 +35,40 @@ export default function KhachHangPage() {
 
   const mockData: KhachHang[] = [
     {
-      id: 1,
-      hoTen: 'Nguyễn Văn A',
-      ngaySinh: '1990-01-15',
-      gioiTinh: 'Nam',
-      cccd: '001234567890',
-      soDienThoai: '0901234567',
-      diaChi: 'Hà Nội',
-      tuoi: 34,
-      email: 'nguyenvana@email.com'
+      ID: 1,
+      HoTen: 'Nguyễn Văn A',
+      NgaySinh: '1990-01-15',
+      GioiTinh: 'Nam',
+      CCCD: '001234567890',
+      SoDienThoai: '0901234567',
+      DiaChi: 'Hà Nội',
+      Tuoi: 34,
+      Email: 'nguyenvana@email.com',
+      NgayTao: '2024-01-01'
+    },
+    {
+      ID: 2,
+      HoTen: 'Trần Thị B',
+      NgaySinh: '1985-05-20',
+      GioiTinh: 'Nữ',
+      CCCD: '001234567891',
+      SoDienThoai: '0901234568',
+      DiaChi: 'TP.HCM',
+      Tuoi: 39,
+      Email: 'tranthib@email.com',
+      NgayTao: '2024-01-02'
+    },
+    {
+      ID: 3,
+      HoTen: 'Lê Văn C',
+      NgaySinh: '1995-08-10',
+      GioiTinh: 'Nam',
+      CCCD: '001234567892',
+      SoDienThoai: '0901234569',
+      DiaChi: 'Đà Nẵng',
+      Tuoi: 29,
+      Email: 'levanc@email.com',
+      NgayTao: '2024-01-03'
     }
   ];
 
@@ -93,15 +118,15 @@ export default function KhachHangPage() {
               <div className="grid grid-cols-2 gap-4">
                 <div className="space-y-2">
                   <Label htmlFor="HoTen">Họ tên</Label>
-                  <Input id="HoTen" name="HoTen" defaultValue={editingKH?.hoTen} required />
+                  <Input id="HoTen" name="HoTen" defaultValue={editingKH?.HoTen} required />
                 </div>
                 <div className="space-y-2">
                   <Label htmlFor="NgaySinh">Ngày sinh</Label>
-                  <Input id="NgaySinh" name="NgaySinh" type="date" defaultValue={editingKH?.ngaySinh} required />
+                  <Input id="NgaySinh" name="NgaySinh" type="date" defaultValue={editingKH?.NgaySinh} required />
                 </div>
                 <div className="space-y-2">
                   <Label htmlFor="GioiTinh">Giới tính</Label>
-                  <Select name="GioiTinh" defaultValue={editingKH?.gioiTinh}>
+                  <Select name="GioiTinh" defaultValue={editingKH?.GioiTinh}>
                     <SelectTrigger>
                       <SelectValue placeholder="Chọn giới tính" />
                     </SelectTrigger>
@@ -114,23 +139,23 @@ export default function KhachHangPage() {
                 </div>
                 <div className="space-y-2">
                   <Label htmlFor="CCCD">CCCD</Label>
-                  <Input id="CCCD" name="CCCD" defaultValue={editingKH?.cccd} required />
+                  <Input id="CCCD" name="CCCD" defaultValue={editingKH?.CCCD} required />
                 </div>
                 <div className="space-y-2">
                   <Label htmlFor="SoDienThoai">Số điện thoại</Label>
-                  <Input id="SoDienThoai" name="SoDienThoai" defaultValue={editingKH?.soDienThoai} required />
+                  <Input id="SoDienThoai" name="SoDienThoai" defaultValue={editingKH?.SoDienThoai} required />
                 </div>
                 <div className="space-y-2">
                   <Label htmlFor="Email">Email</Label>
-                  <Input id="Email" name="Email" type="email" defaultValue={editingKH?.email} />
+                  <Input id="Email" name="Email" type="email" defaultValue={editingKH?.Email} />
                 </div>
                 <div className="space-y-2">
                   <Label htmlFor="Tuoi">Tuổi</Label>
-                  <Input id="Tuoi" name="Tuoi" type="number" defaultValue={editingKH?.tuoi} required />
+                  <Input id="Tuoi" name="Tuoi" type="number" defaultValue={editingKH?.Tuoi} />
                 </div>
                 <div className="space-y-2 col-span-2">
                   <Label htmlFor="DiaChi">Địa chỉ</Label>
-                  <Input id="DiaChi" name="DiaChi" defaultValue={editingKH?.diaChi} required />
+                  <Input id="DiaChi" name="DiaChi" defaultValue={editingKH?.DiaChi} required />
                 </div>
               </div>
               <div className="flex justify-end gap-2">
@@ -215,14 +240,14 @@ export default function KhachHangPage() {
               </TableHeader>
               <TableBody>
                 {mockData.map((kh) => (
-                  <TableRow key={kh.id} className="hover:bg-green-50">
-                    <TableCell>{kh.id}</TableCell>
-                    <TableCell className="font-medium">{kh.hoTen}</TableCell>
-                    <TableCell>{new Date(kh.ngaySinh).toLocaleDateString('vi-VN')}</TableCell>
-                    <TableCell>{kh.gioiTinh}</TableCell>
-                    <TableCell>{kh.soDienThoai}</TableCell>
-                    <TableCell>{kh.cccd}</TableCell>
-                    <TableCell>{kh.email}</TableCell>
+                  <TableRow key={kh.ID} className="hover:bg-green-50">
+                    <TableCell>{kh.ID}</TableCell>
+                    <TableCell className="font-medium">{kh.HoTen}</TableCell>
+                    <TableCell>{new Date(kh.NgaySinh).toLocaleDateString('vi-VN')}</TableCell>
+                    <TableCell>{kh.GioiTinh}</TableCell>
+                    <TableCell>{kh.SoDienThoai}</TableCell>
+                    <TableCell>{kh.CCCD}</TableCell>
+                    <TableCell>{kh.Email}</TableCell>
                     <TableCell className="text-right">
                       <div className="flex justify-end gap-2">
                         <Button
@@ -240,7 +265,7 @@ export default function KhachHangPage() {
                           size="icon"
                           variant="ghost"
                           className="hover:bg-red-50 hover:text-red-600"
-                          onClick={() => handleDelete(kh.id)}
+                          onClick={() => handleDelete(kh.ID)}
                         >
                           <Trash2 className="w-4 h-4" />
                         </Button>
