@@ -1,0 +1,1549 @@
+{
+	"info": {
+		"_postman_id": "73a6b607-07fd-492f-a676-6a19b63075f8",
+		"name": "QuanLyTiemChung",
+		"description": "Bộ sưu tập API cho hệ thống quản lý tiêm chủng",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "48527014"
+	},
+	"item": [
+		{
+			"name": "Khách hàng",
+			"item": [
+				{
+					"name": "Tìm kiếm khách hàng",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/khachhang?keyword&tuoiTu&tuoiDen&gioiTinh&page&pageSize",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"khachhang"
+							],
+							"query": [
+								{
+									"key": "keyword",
+									"value": null
+								},
+								{
+									"key": "tuoiTu",
+									"value": null
+								},
+								{
+									"key": "tuoiDen",
+									"value": null
+								},
+								{
+									"key": "gioiTinh",
+									"value": null
+								},
+								{
+									"key": "page",
+									"value": null
+								},
+								{
+									"key": "pageSize",
+									"value": null
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Tìm kiếm khách hàng theo ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/khachhang/12",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"khachhang",
+								"12"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Xóa khách hàng theo ID",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/khachhang/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"khachhang",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Tạo mới khách hàng",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "HoTen",
+									"value": "Trương Thanh Thùy",
+									"type": "text"
+								},
+								{
+									"key": "NgaySinh",
+									"value": "1982-5-3",
+									"type": "text"
+								},
+								{
+									"key": "GioiTinh",
+									"value": "Nam",
+									"type": "text"
+								},
+								{
+									"key": "CCCD",
+									"value": "047328749234",
+									"type": "text"
+								},
+								{
+									"key": "SoDienThoai",
+									"value": "0369402594",
+									"type": "text"
+								},
+								{
+									"key": "DiaChi",
+									"value": "Tuyên Quang",
+									"type": "text"
+								},
+								{
+									"key": "Tuoi",
+									"value": "40",
+									"type": "text"
+								},
+								{
+									"key": "Email",
+									"value": "banthibich@gmail.com",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/khachhang",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"khachhang"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Cập nhật khách hàng",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "HoTen",
+									"value": "Lê Trần Đăng Phong",
+									"type": "text"
+								},
+								{
+									"key": "NgaySinh",
+									"value": "2004-1-1",
+									"type": "text"
+								},
+								{
+									"key": "GioiTinh",
+									"value": "Nam",
+									"type": "text"
+								},
+								{
+									"key": "CCCD",
+									"value": "0987654321",
+									"type": "text"
+								},
+								{
+									"key": "SoDienThoai",
+									"value": "123456789",
+									"type": "text"
+								},
+								{
+									"key": "DiaChi",
+									"value": "Gia Lai",
+									"type": "text"
+								},
+								{
+									"key": "Tuoi",
+									"value": "",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "Email",
+									"value": "dangphong@gmail.com",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/khachhang/12",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"khachhang",
+								"12"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Thống kê",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/khachhang/thongke",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"khachhang",
+								"thongke"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "- Thêm, sửa, xóa, tìm kiếm khách hàng\n    \n- Thống kê",
+			"auth": {
+				"type": "noauth"
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {},
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {},
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Phiếu khám sàng lọc",
+			"item": [
+				{
+					"name": "Tìm kiếm phiếu khám sàng lọc",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/phieukhamsangloc?maKH=&maNV=&trangThai&duDieuKien=&page=0&pageSize=10",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"phieukhamsangloc"
+							],
+							"query": [
+								{
+									"key": "maKH",
+									"value": ""
+								},
+								{
+									"key": "maNV",
+									"value": ""
+								},
+								{
+									"key": "trangThai",
+									"value": null
+								},
+								{
+									"key": "duDieuKien",
+									"value": ""
+								},
+								{
+									"key": "page",
+									"value": "0"
+								},
+								{
+									"key": "pageSize",
+									"value": "10"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Tìm kiếm phiếu khám sàng lọc theo ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/phieukhamsangloc/32",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"phieukhamsangloc",
+								"32"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Xóa phiếu khám sàng lọc theo ID",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/phieukhamsangloc/7",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"phieukhamsangloc",
+								"7"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Tạo phiếu khám sàng lọc",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "ThoiGianTao",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "MaKH",
+									"value": "10",
+									"type": "text"
+								},
+								{
+									"key": "MaNV",
+									"value": "9",
+									"type": "text"
+								},
+								{
+									"key": "TrangThai",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "DuDieuKien",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "HuyetAp",
+									"value": "100",
+									"type": "text"
+								},
+								{
+									"key": "Mach",
+									"value": "100",
+									"type": "text"
+								},
+								{
+									"key": "ThanNhiet",
+									"value": "100",
+									"type": "text"
+								},
+								{
+									"key": "LyDoHoan",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "GhiChu",
+									"value": "Nothing",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/phieukhamsangloc",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"phieukhamsangloc"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Cập nhật phiếu khám sàng lọc",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "ThoiGianTao",
+									"value": "2025-10-26",
+									"type": "text"
+								},
+								{
+									"key": "MaKH",
+									"value": "8",
+									"type": "text"
+								},
+								{
+									"key": "MaNV",
+									"value": "9",
+									"type": "text"
+								},
+								{
+									"key": "TrangThai",
+									"value": "Chưa tiêm",
+									"type": "text"
+								},
+								{
+									"key": "DuDieuKien",
+									"value": "0",
+									"type": "text"
+								},
+								{
+									"key": "HuyetAp",
+									"value": "100",
+									"type": "text"
+								},
+								{
+									"key": "Mach",
+									"value": "150",
+									"type": "text"
+								},
+								{
+									"key": "ThanNhiet",
+									"value": "40",
+									"type": "text"
+								},
+								{
+									"key": "LyDoHoan",
+									"value": "Không đủ sức khỏe",
+									"type": "text"
+								},
+								{
+									"key": "GhiChu",
+									"value": "No_thing",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/phieukhamsangloc/7",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"phieukhamsangloc",
+								"7"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Phiếu tiêm",
+			"item": [
+				{
+					"name": "Tìm kiếm phiếu tiêm",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/phieutiem?maVaccine&maNV&maPhieuKham&daThanhToan&coPhanUng&page=0&pageSize=10",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"phieutiem"
+							],
+							"query": [
+								{
+									"key": "maVaccine",
+									"value": null
+								},
+								{
+									"key": "maNV",
+									"value": null
+								},
+								{
+									"key": "maPhieuKham",
+									"value": null
+								},
+								{
+									"key": "daThanhToan",
+									"value": null
+								},
+								{
+									"key": "coPhanUng",
+									"value": null
+								},
+								{
+									"key": "page",
+									"value": "0"
+								},
+								{
+									"key": "pageSize",
+									"value": "10"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Lấy phiếu tiêm theo ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/phieutiem/49",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"phieutiem",
+								"49"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Xóa phiếu tiêm theo ID",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/phieutiem/45",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"phieutiem",
+								"45"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Tạo mới phiếu tiêm",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"maNV\" : 5,\r\n    \"ghiChu\" : \"Ghi chu abc\",\r\n    \"maPhieuKham\" : 9,\r\n    \"diaDiemTiem\" : \"Tại cơ sở\",\r\n    \"viTriTiem\" : \"Tay trái\",\r\n    \"vaccines\" : [\r\n        {\r\n            \"vid\" : 19,\r\n            \"soLieu\" : 2\r\n        }\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/phieutiem",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"phieutiem"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Tạo mới phiếu tiêm",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"MaNVTiem\" : 5,\r\n    \"GhiChu\" :  \"Nothing\",\r\n    \"MaPhieuKham\" : 8,\r\n    \"DiaDiemTiem\" : \"Tại cơ sở\",\r\n    \"ViTriTiem\" : \"Tay trái\", \r\n    \"vaccines\" : [\r\n        {\r\n            \"vid\" : 23,\r\n            \"soLieu\" : 1\r\n        }\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/phieutiem/48",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"phieutiem",
+								"48"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Vaccine",
+			"item": [
+				{
+					"name": "Tìm kiếm vaccine",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/vaccine?keyword&page=0&pageSize=10",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"vaccine"
+							],
+							"query": [
+								{
+									"key": "keyword",
+									"value": null
+								},
+								{
+									"key": "page",
+									"value": "0"
+								},
+								{
+									"key": "pageSize",
+									"value": "10"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Lấy vaccine theo ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/vaccine/19",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"vaccine",
+								"19"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Xóa vaccine theo ID",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/vaccine/24",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"vaccine",
+								"24"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Tạo mới vaccine",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "Ten",
+									"value": "Test Vaccine",
+									"type": "text"
+								},
+								{
+									"key": "HangSX",
+									"value": "My",
+									"type": "text"
+								},
+								{
+									"key": "DonGia",
+									"value": "100000",
+									"type": "text"
+								},
+								{
+									"key": "MoTa",
+									"value": "Day la vaccine test",
+									"type": "text"
+								},
+								{
+									"key": "GhiChu",
+									"value": "Nothing",
+									"type": "text"
+								},
+								{
+									"key": "MaLoai",
+									"value": "9",
+									"type": "text"
+								},
+								{
+									"key": "DonVi",
+									"value": "Lieu",
+									"type": "text"
+								},
+								{
+									"key": "DoTuoi",
+									"value": "0-18 tuổi",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/vaccine",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"vaccine"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Cập nhật vaccine",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "Ten",
+									"value": "Vaccine test update",
+									"type": "text"
+								},
+								{
+									"key": "SoLuong",
+									"value": "100",
+									"type": "text"
+								},
+								{
+									"key": "HangSX",
+									"value": "VietNam",
+									"type": "text"
+								},
+								{
+									"key": "DonGia",
+									"value": "75000",
+									"type": "text"
+								},
+								{
+									"key": "MoTa",
+									"value": "Nothing",
+									"type": "text"
+								},
+								{
+									"key": "GhiChu",
+									"value": "NoThing",
+									"type": "text"
+								},
+								{
+									"key": "MaLoai",
+									"value": "10",
+									"type": "text"
+								},
+								{
+									"key": "DonVi",
+									"value": "Liều",
+									"type": "text"
+								},
+								{
+									"key": "DoTuoi",
+									"value": "Mọi độ tuổi",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/vaccine/24",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"vaccine",
+								"24"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Thanh toán",
+			"item": [
+				{
+					"name": "Tìm kiếm thanh toán",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/thanhtoan?tongTienTu&tongTienDen&maPhieuTiem&maPTTT&maKHTT&page=0&pageSize=10",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"thanhtoan"
+							],
+							"query": [
+								{
+									"key": "tongTienTu",
+									"value": null
+								},
+								{
+									"key": "tongTienDen",
+									"value": null
+								},
+								{
+									"key": "maPhieuTiem",
+									"value": null
+								},
+								{
+									"key": "maPTTT",
+									"value": null
+								},
+								{
+									"key": "maKHTT",
+									"value": null
+								},
+								{
+									"key": "page",
+									"value": "0"
+								},
+								{
+									"key": "pageSize",
+									"value": "10"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Lấy thanh toán theo ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/thanhtoan/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"thanhtoan",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Xóa thanh toán theo ID",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/thanhtoan/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"thanhtoan",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Tạo thanh toán",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "tienNhan",
+									"value": "200000",
+									"type": "text"
+								},
+								{
+									"key": "tienTraLai",
+									"value": "100000",
+									"type": "text"
+								},
+								{
+									"key": "maPTTT",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "maNVTao",
+									"value": "5",
+									"type": "text"
+								},
+								{
+									"key": "maPhieuTiem",
+									"value": "48",
+									"type": "text"
+								},
+								{
+									"key": "maKHTT",
+									"value": "3",
+									"type": "text"
+								},
+								{
+									"key": "ghiChu",
+									"value": "nothing",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/thanhtoan",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"thanhtoan"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Cập nhật thanh toán",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "tienNhan",
+									"value": "200000",
+									"type": "text"
+								},
+								{
+									"key": "tienTraLai",
+									"value": "80000",
+									"type": "text"
+								},
+								{
+									"key": "maPTTT",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "maNV",
+									"value": "5",
+									"type": "text"
+								},
+								{
+									"key": "maPhieuTiem",
+									"value": "48",
+									"type": "text"
+								},
+								{
+									"key": "maKHTT",
+									"value": "4",
+									"type": "text"
+								},
+								{
+									"key": "ghiChu",
+									"value": "nothing",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/thanhtoan/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"thanhtoan",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Nhập / xuất",
+			"item": [
+				{
+					"name": "Tìm kiếm lô vaccine",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/lo?keyword&ngayTaoTu&ngayTaoDen&page&pageSize",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"lo"
+							],
+							"query": [
+								{
+									"key": "keyword",
+									"value": null
+								},
+								{
+									"key": "ngayTaoTu",
+									"value": null
+								},
+								{
+									"key": "ngayTaoDen",
+									"value": null
+								},
+								{
+									"key": "page",
+									"value": null
+								},
+								{
+									"key": "pageSize",
+									"value": null
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Lấy lô theo ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/lo/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"lo",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Xóa lô theo ID",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/lo/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"lo",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Tạo mới lô",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "hangVC",
+									"value": "",
+									"description": "Hãng vận chuyển",
+									"type": "text"
+								},
+								{
+									"key": "maNVNhan",
+									"value": "",
+									"description": "Mã nhân viên nhận",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/lo",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"lo"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Cập nhật lô",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "hangVC",
+									"value": "",
+									"description": "Hãng vận chuyển",
+									"type": "text"
+								},
+								{
+									"key": "maNV",
+									"value": "",
+									"description": "Mã nhân viên nhận",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/lo",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"lo"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Nhập vaccine",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "maLo",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "maVaccine",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "soLuong",
+									"value": "",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/lo/nhap-vaccine",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"lo",
+								"nhap-vaccine"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Nhân viên/Bác sĩ",
+			"item": [
+				{
+					"name": "Tìm kiếm nhân viên",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "",
+									"value": "",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/nhanvien?keyword&vaiTro&luongTu&luongDen&page&pageSize",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"nhanvien"
+							],
+							"query": [
+								{
+									"key": "keyword",
+									"value": null
+								},
+								{
+									"key": "vaiTro",
+									"value": null
+								},
+								{
+									"key": "luongTu",
+									"value": null
+								},
+								{
+									"key": "luongDen",
+									"value": null
+								},
+								{
+									"key": "page",
+									"value": null
+								},
+								{
+									"key": "pageSize",
+									"value": null
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Tìm kiếm nhân viên theo ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/nhanvien/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"nhanvien",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Xóa nhân viên theo ID",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/nhanvien/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"nhanvien",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Tạo mới nhân viên",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "HoTen",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "NgaySinh",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "GioiTinh",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "CCCD",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "SoDienThoai",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "DiaChi",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "TaiKhoan",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "LuongCoBan",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "Anh",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "NgayVaoLam",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "SoNamKinhNghiem",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "DiemManh",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "DiemYeu",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "VaiTro",
+									"value": "",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/nhanvien",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"nhanvien"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Cập nhật nhân viên",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "HoTen",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "NgaySinh",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "GioiTinh",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "CCCD",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "SoDienThoai",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "DiaChi",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "TaiKhoan",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "LuongCoBan",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "Anh",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "NgayVaoLam",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "SoNamKinhNghiem",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "DiemManh",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "DiemYeu",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "VaiTro",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "NgayNghiViec",
+									"value": "",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/nhanvien/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"nhanvien",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"requests": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"requests": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "base_url",
+			"value": ""
+		},
+		{
+			"key": "token",
+			"value": ""
+		}
+	]
+}
